@@ -1,0 +1,93 @@
+<p>Crear Venta</p>
+
+<p *ngIf="!loaded"><em>Cargando...</em></p>
+<div *ngIf="loaded" class="container">
+    <form (ngSubmit)="onSubmit()" #ClienteForm="ngForm">
+
+        <div id="divPaso1">
+            <div class="form-group" [hidden]="isSelectedClient">
+                <p><b>Paso 1 Seleccione el cliente</b></p>
+                <label for="clienteNombre">Nombre Cliente</label>
+                <br />
+                <select id="cliente" name="cliente" [(ngModel)]="selectedValue" required>
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id">
+                        {{cliente.nombres}} - {{cliente.apellidos}}
+                    </option>
+                </select>
+                <p>
+                    <button type="button" id="btnSelectCliente" class="btn btn-primary"
+                        (click)="selectCliente()">Seleccionar Cliente</button>
+                </p>
+            </div>
+
+            <div [hidden]="!isSelectedClient">
+                <table>
+                    <tr>
+                        <td> <b>Cliente</b> </td>
+                        <td> {{selectedName}} </td>
+                    </tr>
+                    <tr>
+                        <td> <b>Total</b> </td>
+                        <td> <b>{{ventaTotal}}</b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div [hidden]="!isSelectedClient">
+            <hr />
+            <div>
+                <table>
+                    <tr>
+                        <td>Producto</td>
+                        <td> <select id="producto" name="producto" [(ngModel)]="prodSelectedValue" required>
+                                <option *ngFor="let producto of productos" [value]="producto.id">
+                                    {{producto.nombre}} - Valor ${{producto.valor}}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cantidad</td>
+                        <td><input class="form-control" type="number" id="Cantidad" name="Cantidad" required
+                                minlength="1" [(ngModel)]="prodCantidad" #vlCantidad="ngModel" />
+                            <div [hidden]="vlCantidad.valid" class="alert alert-danger">
+                                Cantidad
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <button type="button" id="btnAddDetalle" class="btn btn-primary" (click)="addDetalle()">Adiciona
+                    Detalle</button>
+            </div>
+            <hr />
+
+
+            <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="detalleVenta">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detalleV of detalleVenta">
+                        <td>{{ detalleV.nombre }}</td>
+                        <td>{{ detalleV.cantidad }}</td>
+                        <td>{{ detalleV.valor }}</td>
+                        <td>{{ detalleV.total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <button class="button" type="submit">Crear Venta</button>
+        </div>
+    </form>
+</div>
+
+<p *ngIf="end"><em>Cliente Adicionado!...</em></p>

@@ -1,0 +1,36 @@
+<p>Adicionar Producto</p>
+
+<p *ngIf="!loaded"><em>Cargando...</em></p>
+<div *ngIf="loaded" class="container">
+<form (ngSubmit)="onSubmit()" #ClienteForm="ngForm">
+
+    <div class="form-group">
+        <label for="productoNombre">Nombre Producto</label>
+        <input class="form-control"
+               type="text" id="productoNombre" name="productoNombre" 
+               required minlength="1" 
+               [(ngModel)]="producto.nombre" #vlProdReq="ngModel"/>             
+        <div [hidden]="vlProdReq.valid" class="alert alert-danger">
+          Producto Nombre requerido
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <label for="productoValor">Valor Producto</label>
+        <input class="form-control"
+               type="number" id="productoValor" name="productoValor" 
+               required minlength="1" 
+               [(ngModel)]="producto.valor" #vlProdval="ngModel"/>             
+        <div [hidden]="vlProdval.valid" class="alert alert-danger">
+          Valor del producto requerido
+        </div>
+      </div>
+
+      
+ 
+    <button class="button" type="submit">Crear Producto</button>
+  
+  </form>
+</div>
+
+<p *ngIf="end"><em>Producto Adicionado!...</em></p>

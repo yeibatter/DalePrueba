@@ -1,0 +1,24 @@
+<p>Clientes</p>
+<p *ngIf="!clientes"><em>Loading...</em></p>
+
+<a *ngIf="clientes" class="btn btn-primary" [routerLink]="['/cliente-add']">Adicionar Cliente</a>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="clientes">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Documento</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Telefono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.documento }}</td>
+      <td>{{ cliente.nombres }}</td>
+      <td>{{ cliente.apellidos }}</td>
+      <td>{{ cliente.numeroTelefono }}</td>
+    </tr>
+  </tbody>
+</table>

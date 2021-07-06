@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold "Password=hXTm8PhK5TzTSxW6;Persist Security Info=True;User ID=daleUser;Initial Catalog=DaleDB;Data Source=DESKTOP-NLQGTQ7" Microsoft.EntityFrameworkCore.SqlServer -v --startup-project ./Dale.BackEnd/ -o DBModel --context-dir Context -c DaleContext --force -d -t CLIENTE -t DETALLE_VENTA -t PRODUCTO -t VENTA

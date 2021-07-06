@@ -1,0 +1,55 @@
+<p>Adicionar Clientes</p>
+
+<p *ngIf="!loaded"><em>Cargando...</em></p>
+<div *ngIf="loaded" class="container">
+<form (ngSubmit)="onSubmit()" #ClienteForm="ngForm">
+
+    <div class="form-group">
+        <label for="clienteNombre">Nombres Cliente</label>
+        <input class="form-control"
+               type="text" id="clienteNombre" name="clienteNombre" 
+               required minlength="1" 
+               [(ngModel)]="cliente.nombres" #vlClienteReq="ngModel"/>             
+        <div [hidden]="vlClienteReq.valid" class="alert alert-danger">
+          Cliente Nombre requerido
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <label for="clienteApellido">Apellidos Cliente</label>
+        <input class="form-control"
+               type="text" id="clienteApellido" name="clienteApellido" 
+               required minlength="1" 
+               [(ngModel)]="cliente.apellidos" #vlClienteApellidoReq="ngModel"/>             
+        <div [hidden]="vlClienteApellidoReq.valid" class="alert alert-danger">
+          Cliente Apellido Requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="clienteDocumento">Documento Cliente</label>
+        <input class="form-control"
+               type="text" id="clienteDocumento" name="clienteDocumento" 
+               required minlength="1" 
+               [(ngModel)]="cliente.documento" #vlClienteDocumentoReq="ngModel"/>             
+        <div [hidden]="vlClienteDocumentoReq.valid" class="alert alert-danger">
+          Cliente Documento Requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="clienteTelefono">Telefono Cliente</label>
+        <input class="form-control"
+               type="text" id="clienteTelefono" name="clienteTelefono" 
+               required minlength="1" 
+               [(ngModel)]="cliente.numeroTelefono" #vlClienteTelefonoReq="ngModel"/>             
+        <div [hidden]="vlClienteTelefonoReq.valid" class="alert alert-danger">
+          Cliente Telefono Requerido
+        </div>
+      </div>
+    <button class="button" type="submit">Crear Cliente</button>
+  
+  </form>
+</div>
+
+<p *ngIf="end"><em>Cliente Adicionado!...</em></p>

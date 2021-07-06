@@ -1,0 +1,23 @@
+
+<p>Productos</p>
+<p *ngIf="!productos"><em>Loading...</em></p>
+
+<a *ngIf="productos" class="btn btn-primary" [routerLink]="['/producto-add']">Adicionar Producto</a>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="productos">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Valor</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos">
+      <td>{{ producto.id }}</td>
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.valor }}</td>
+       
+    </tr>
+  </tbody>
+</table>
